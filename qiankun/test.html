@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Deferred {
+            // promise: null;
+            // resolve: null;
+            // reject: null;
+            constructor() {
+                this.promise = new Promise((resolve, reject) => {
+                this.resolve = resolve;
+                this.reject = reject;
+                });
+            }
+        }
+
+        const frameworkStartedDefer = new Deferred()
+       
+
+        setTimeout(() => {
+            frameworkStartedDefer.resolve(1);
+        });
+
+
+        async  function fun(){
+            console.log('11111')
+            await frameworkStartedDefer.promise
+            console.log('22222')
+
+        }
+
+        fun()
+
+    </script>
+</body>
+</html>

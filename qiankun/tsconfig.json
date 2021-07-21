@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "es6",
+    "module": "esnext",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": false,
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "lib": ["es6", "DOM"],
+    "outDir": "./esm",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*", "src/global.d.ts"],
+  "exclude": ["node_modules", "examples"]
+}
