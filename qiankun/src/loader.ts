@@ -261,6 +261,9 @@ export async function loadApp<T extends ObjectType>(
 
   const { singular = false, sandbox = true, excludeAssetFilter, ...importEntryOpts } = configuration
 
+  const aa = await importEntry(entry, importEntryOpts)
+  console.log(aa)
+
   // 获取子应用资源
   // 通过importEntry函数传入口和参数，解析出template、script、资源地址路径（用于加载子应用资源）
   const { template, execScripts, assetPublicPath } = await importEntry(entry, importEntryOpts)
@@ -275,7 +278,8 @@ export async function loadApp<T extends ObjectType>(
     await (prevAppUnmountedDeferred && prevAppUnmountedDeferred.promise)
   }
 
-  // 用id为__qiankun_microapp_wrapper的div包裹内容  appInstanceId = "react16_1626686269789_242", appName = "react16"
+  // 1. importEntry 解析出来的 template
+  // 2. 用id为__qiankun_microapp_wrapper的div包裹内容  appInstanceId = "react16_1626686269789_242", appName = "react16"
   /*
   "<div id="__qiankun_microapp_wrapper_for_react_16_1626686269789_242__" data-name="react16"><!DOCTYPE html>
     <html lang="en">
@@ -302,6 +306,7 @@ export async function loadApp<T extends ObjectType>(
   const appContent = getDefaultTplWrapper(appInstanceId, appName)(template)
 
   const strictStyleIsolation = typeof sandbox === 'object' && !!sandbox.strictStyleIsolation
+
   const scopedCSS = isEnableScopedCSS(sandbox)
   let initialAppWrapperElement: HTMLElement | null = createElement(
     appContent,
@@ -336,7 +341,7 @@ export async function loadApp<T extends ObjectType>(
   let unmountSandbox = () => Promise.resolve()
   const useLooseSandbox = typeof sandbox === 'object' && !!sandbox.loose
   let sandboxContainer
-  if (sandbox) {
+  if (!sandbox) {
     sandboxContainer = createSandboxContainer(
       appName,
       // FIXME should use a strict sandbox logic while remount, see https://github.com/umijs/qiankun/issues/518

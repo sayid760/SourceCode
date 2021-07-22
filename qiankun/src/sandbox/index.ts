@@ -36,7 +36,7 @@ export function createSandboxContainer(
   excludeAssetFilter?: (url: string) => boolean,
 ) {
   let sandbox: SandBox
-  // window支持proxy的用proxy沙箱，否则用快照沙箱
+  // 判断浏览器是否支持proxy，支持用proxy沙箱，否则用快照沙箱
   if (window.Proxy) {
     sandbox = useLooseSandbox ? new LegacySandbox(appName) : new ProxySandbox(appName)
   } else {
