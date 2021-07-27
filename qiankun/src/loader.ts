@@ -261,8 +261,8 @@ export async function loadApp<T extends ObjectType>(
 
   const { singular = false, sandbox = true, excludeAssetFilter, ...importEntryOpts } = configuration
 
-  const aa = await importEntry(entry, importEntryOpts)
-  console.log(aa)
+  // const aa = await importEntry(entry, importEntryOpts)
+  // console.log(aa)
 
   // 获取子应用资源
   // 通过importEntry函数传入口和参数，解析出template、script、资源地址路径（用于加载子应用资源）

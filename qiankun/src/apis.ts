@@ -42,7 +42,11 @@ export function registerMicroApps<T extends ObjectType>(
           await loadApp({ name, props, ...appConfig }, frameworkConfiguration, lifeCycles)
         )()
 
+        console.log('mount', mount)
+        console.log('otherMicroAppConfigs', otherMicroAppConfigs)
+
         return {
+          // 匹配对应的路由地址，获取到对应的loader，执行loading
           mount: [async() => loader(true), ...toArray(mount), async() => loader(false)],
           ...otherMicroAppConfigs
         }
