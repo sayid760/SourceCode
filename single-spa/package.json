@@ -35,33 +35,10 @@
       ]
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently yarn:test yarn:lint"
-    }
-  },
   "files": [
     "lib",
     "typings/single-spa.d.ts"
   ],
-  "homepage": "https://single-spa.js.org",
-  "repository": "https://github.com/single-spa/single-spa",
-  "bugs": "https://github.com/single-spa/single-spa/issues",
-  "keywords": [
-    "microfrontends",
-    "single",
-    "page",
-    "application",
-    "framework",
-    "react",
-    "angular",
-    "vue",
-    "router",
-    "microservices",
-    "frontend"
-  ],
-  "author": "Joel Denning",
-  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.0",

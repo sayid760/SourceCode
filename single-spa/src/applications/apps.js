@@ -24,12 +24,14 @@ import { isInBrowser } from "../utils/runtime-environment.js";
 import { assign } from "../utils/assign";
 
 const apps = [];
+console.log(apps)
 
+// 将应用分为四大类
 export function getAppChanges() {
-  const appsToUnload = [],
-    appsToUnmount = [],
-    appsToLoad = [],
-    appsToMount = [];
+  const appsToUnload = [], // 需要被移除的应用
+    appsToUnmount = [], // 需要被卸载的应用
+    appsToLoad = [], // 需要被加载的应用
+    appsToMount = []; // 需要被挂载的应用
 
   // We re-attempt to download applications in LOAD_ERROR after a timeout of 200 milliseconds
   const currentTime = new Date().getTime();
@@ -88,12 +90,21 @@ export function getAppStatus(appName) {
   return app ? app.status : null;
 }
 
+/*
+  registerApplication('@sigrid/navbar', System.import("http://localhost:8082/js/app.js"), ["/"])
+  registerApplication({
+    name: '@sigrid/navbar',
+    app: () => System.import("http://localhost:8082/js/app.js"),
+    activeWhen: ["/"]
+  })
+*/
 export function registerApplication(
-  appNameOrConfig,
-  appOrLoadApp,
-  activeWhen,
+  appNameOrConfig,  // {name: "@sigrid/app1", activeWhen: Array(1), app: ƒ}
+  appOrLoadApp, // appOrLoadApp = undefined  返回promise的函数
+  activeWhen, // activeWhen = undefined 返回boolean值的函数
   customProps
 ) {
+  
   const registration = sanitizeArguments(
     appNameOrConfig,
     appOrLoadApp,
@@ -101,6 +112,7 @@ export function registerApplication(
     customProps
   );
 
+  // 判断应用是否重名
   if (getAppNames().indexOf(registration.name) !== -1)
     throw Error(
       formatErrorMessage(
@@ -111,6 +123,7 @@ export function registerApplication(
       )
     );
 
+  // 给每个应用增加一个内置属性
   apps.push(
     assign(
       {
@@ -129,6 +142,7 @@ export function registerApplication(
   );
 
   if (isInBrowser) {
+    // 页面中使用了jq，给jq打patch
     ensureJQuerySupport();
     reroute();
   }
