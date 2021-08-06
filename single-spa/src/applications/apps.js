@@ -94,7 +94,7 @@ export function getAppStatus(appName) {
   registerApplication('@sigrid/navbar', System.import("http://localhost:8082/js/app.js"), ["/"])
   registerApplication({
     name: '@sigrid/navbar',
-    app: () => System.import("http://localhost:8082/js/app.js"),
+    app: () => System.import("http://localhost:8082/js/app.js"), // 懒加载
     activeWhen: ["/"]
   })
 */
@@ -104,7 +104,17 @@ export function registerApplication(
   activeWhen, // activeWhen = undefined 返回boolean值的函数
   customProps
 ) {
-  
+  console.log('appNameOrConfig', appNameOrConfig)
+  console.log('appOrLoadApp', appOrLoadApp)
+  console.log('activeWhen', activeWhen)
+  console.log('customProps', customProps)
+
+  /**
+    activeWhen: ƒ (location)
+    customProps: {}
+    loadApp: ƒ app()
+    name: "@sigrid/navbar"
+   */
   const registration = sanitizeArguments(
     appNameOrConfig,
     appOrLoadApp,
@@ -144,6 +154,7 @@ export function registerApplication(
   if (isInBrowser) {
     // 页面中使用了jq，给jq打patch
     ensureJQuerySupport();
+    // 加载应用
     reroute();
   }
 }

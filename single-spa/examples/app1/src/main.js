@@ -6,7 +6,7 @@ import "@babel/polyfill";
 
 Vue.config.productionTip = false;
 
- singleSpaVue({
+const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
     render(h) {
@@ -29,7 +29,7 @@ export const unmount = vueLifecycles.unmount;
 
 // console.log(bootstrap)
 
-// console.log(mount)
+console.log('sss')
 
 // console.log(unmount)
 

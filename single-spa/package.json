@@ -21,7 +21,7 @@
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "lint": "eslint src",
-    "start:examples": "run-p start:app1 start:app2 start:navbar start:main",
+    "start:examples": "run-p start:main start:app1 start:app2 start:navbar",
     "start:app1": "cd examples/app1 && npm run serve",
     "start:app2": "cd examples/app2 && npm run serve",
     "start:navbar": "cd examples/navbar && npm run serve",

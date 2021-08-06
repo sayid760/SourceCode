@@ -1,5 +1,16 @@
-function fn(a,b,c){
-    console.log(a,b,c)
-}
+/* eslint-disable es5/no-classes */
+// function fn(){
+//     return {
+//         a:'111'
+//     }
+// }
 
-fn({a:'111', b:'222', c:'333'})
+// const appsToLoad=[fn]
+// appsToLoad.map(toLoadPromise)
+
+// function toLoadPromise(app){
+//     console.log('app', app)
+// }
+
+// eslint-disable-next-line es5/no-classes
+

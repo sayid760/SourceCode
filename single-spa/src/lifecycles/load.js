@@ -36,7 +36,14 @@ export function toLoadPromise(app) {
 
     return (app.loadPromise = Promise.resolve()
       .then(() => {
+        console.log('app11111', app)
+        /*mountParcel: ƒ ()
+          name: "@sigrid/app1"
+          singleSpa: {…}
+        */
+        console.log('getProps(app)', getProps(app)) 
         const loadPromise = app.loadApp(getProps(app));
+        console.log('loadPromise11111', loadPromise)
         if (!smellsLikeAPromise(loadPromise)) {
           // The name of the app will be prepended to this error message inside of the handleAppError function
           isUserErr = true;
@@ -52,6 +59,7 @@ export function toLoadPromise(app) {
           );
         }
         return loadPromise.then((val) => {
+          console.log('loadPromise', val)
           app.loadErrorTime = null;
 
           appOpts = val;
@@ -121,7 +129,7 @@ export function toLoadPromise(app) {
               appOpts.devtools.overlays
             );
           }
-
+          console.log('appOpts', appOpts)
           app.status = NOT_BOOTSTRAPPED;
           app.bootstrap = flattenFnArray(appOpts, "bootstrap");
           app.mount = flattenFnArray(appOpts, "mount");

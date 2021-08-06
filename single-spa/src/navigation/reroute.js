@@ -35,6 +35,7 @@ export function triggerAppChange() {
 }
 
 export function reroute(pendingPromises = [], eventArguments) {
+  console.log('reroute', reroute)
   if (appChangeUnderway) {
     return new Promise((resolve, reject) => {
       peopleWaitingOnAppChange.push({
@@ -69,9 +70,11 @@ export function reroute(pendingPromises = [], eventArguments) {
     navigationIsCanceled = true;
   }
 
+  // 预加载应用
   function loadApps() {
     return Promise.resolve().then(() => {
-      const loadPromises = appsToLoad.map(toLoadPromise);
+      console.log('appsToLoad', appsToLoad)
+      const loadPromises = appsToLoad.map(toLoadPromise); // 就是获取到bootstrap,mount和unmount方法放到app上
 
       return (
         Promise.all(loadPromises)
@@ -86,6 +89,7 @@ export function reroute(pendingPromises = [], eventArguments) {
     });
   }
 
+  // 根据路径来装载应用
   function performAppChanges() {
     return Promise.resolve().then(() => {
       // https://github.com/single-spa/single-spa/issues/545
@@ -136,19 +140,14 @@ export function reroute(pendingPromises = [], eventArguments) {
         );
       });
 
-      /* We load and bootstrap apps while other apps are unmounting, but we
-       * wait to mount the app until all apps are finishing unmounting
-       */
+      // 等所有应用都卸载掉，才能加载应用
       const loadThenMountPromises = appsToLoad.map((app) => {
         return toLoadPromise(app).then((app) =>
           tryToBootstrapAndMount(app, unmountAllPromise)
         );
       });
 
-      /* These are the apps that are already bootstrapped and just need
-       * to be mounted. They each wait for all unmounting apps to finish up
-       * before they mount.
-       */
+      // 等待所有应用协助完，才能启动或者安装应用
       const mountPromises = appsToMount
         .filter((appToMount) => appsToLoad.indexOf(appToMount) < 0)
         .map((appToMount) => {
