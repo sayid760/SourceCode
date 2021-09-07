@@ -11,7 +11,7 @@ console.log(registerApplication);
 
 registerApplication({
   name: "@sigrid/navbar",
-  app: () => System.import("http://localhost:8082/js/app.js"),
+  app: () => System.import("@sigrid/navbar"), //  System.import(http://localhost:8082/js/app.js)
   activeWhen: ["/"],
 });
 

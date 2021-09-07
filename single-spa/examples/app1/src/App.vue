@@ -8,5 +8,8 @@ export default {
   data: () => ({
     //
   }),
+  mounted(){
+    console.log(this)
+  }
 };
 </script>

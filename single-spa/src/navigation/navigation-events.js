@@ -68,7 +68,7 @@ export function callCapturedEventListeners(eventArguments) {
     if (routingEventsListeningTo.indexOf(eventType) >= 0) {
       capturedEventListeners[eventType].forEach((listener) => {
         try {
-          // The error thrown by application event listener should not break single-spa down.
+          // 应用程序事件监听器抛出的错误不应该使single-spa崩溃
           // Just like https://github.com/single-spa/single-spa/blob/85f5042dff960e40936f3a5069d56fc9477fac04/src/navigation/reroute.js#L140-L146 did
           listener.apply(this, eventArguments);
         } catch (e) {

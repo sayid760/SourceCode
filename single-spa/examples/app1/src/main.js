@@ -27,9 +27,5 @@ export const bootstrap = vueLifecycles.bootstrap;
 export const mount = vueLifecycles.mount;
 export const unmount = vueLifecycles.unmount;
 
-// console.log(bootstrap)
 
-console.log('sss')
-
-// console.log(unmount)
 
