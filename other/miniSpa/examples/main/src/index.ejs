@@ -13,7 +13,7 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@sigrid/root-config": "//localhost:9001/sigrid-root-config.js",
+        "@sigrid/root-config": "//localhost:9000/sigrid-root-config.js",
         "@sigrid/app1": "//localhost:8080/js/app.js",
         "@sigrid/app2": "//localhost:8081/js/app.js"
       }
@@ -37,25 +37,31 @@
 <body>
   <main></main>
   <div style="position: relative; z-index: 99;">
-    <a onclick="a()">应用1</a>
-    <a onclick="b()">应用2</a>
+    <a onclick="go('/')">应用1</a>
+    <a onclick="go('/vue2')">应用2</a>
   </div>
     <script>
-      function a(){
-        history.pushState({},'','/')
-        window.addEventListener('popstate', function (e) {
-        // let goHref = window.location.href;
-        console.log('即将跳转目标路径为：');
-        // // 走到这一步，页面还没有跳转
-   });
-      }
-      function b(){
-        history.pushState({},'','/vue2')
-      }
+
+      // function a(){
+      //   history.pushState({}, null, '/')
+      // }
+      // function b(){
+      //   history.pushState({}, null, '/vue2')
+      // }
+
+      // // 监听浏览器的前进、后退（使用history.pushState或history.replaceState修改url不会触发popstate事件）
+      // window.addEventListener('popstate', (event)=>{ 
+      //     console.log('popstate', event)
+      // })
+
+      // window.addEventListener('hashchange',(event)=>{  // window.onhashchange=(event)=>{}
+      //   console.log('old url', event)
+      // })
+
   </script>
   <script>
-    System.import('@sigrid/root-config');
-
+   const aa = System.import('@sigrid/root-config');
+    console.log(aa)
     // const aa = System.import("http://localhost:8080/js/app.js")
     // aa.then(res=>{
     //   console.log(res)

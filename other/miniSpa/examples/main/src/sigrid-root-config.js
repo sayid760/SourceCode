@@ -15,3 +15,8 @@ registerApplication({
 start({
   urlRerouteOnly: true,
 });
+
+export const go = (pathname) => {
+  history.pushState({}, null, pathname);
+  reroute();
+};

@@ -1,16 +1,11 @@
 {
   "name": "@sigrid/root-config",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --port 9001 --env.isLocal=true",
+    "start": "webpack-dev-server --mode=development --port 9000 --env.isLocal=true",
     "lint": "eslint src --ext js",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write \"./**\"",
     "build": "webpack --mode=production"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently npm:test npm:lint"
-    }
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
@@ -41,7 +36,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "single-spa": "^5.3.1",
-    "systemjs-webpack-interop": "^2.3.7"
+    "single-spa": "^5.3.1"
   }
 }
