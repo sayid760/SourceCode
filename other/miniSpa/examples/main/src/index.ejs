@@ -8,17 +8,19 @@
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.5/runtime.min.js"></script>
   <meta name="importmap-type" content="systemjs-importmap" />
   
-<!-- 
+
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
     {
       "imports": {
         "@sigrid/root-config": "//localhost:9001/sigrid-root-config.js",
         "@sigrid/app1": "//localhost:8080/js/app.js",
+        "@sigrid/app2": "//localhost:8081/js/app.js"
       }
     }
   </script>
-  <% } %> -->
+  <% } %>
+  <!--  -->
 
   <% if (isLocal) { %>
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@1.16.0/dist/import-map-overrides.js"></script>
@@ -34,13 +36,31 @@
 </head>
 <body>
   <main></main>
+  <div style="position: relative; z-index: 99;">
+    <a onclick="a()">应用1</a>
+    <a onclick="b()">应用2</a>
+  </div>
+    <script>
+      function a(){
+        history.pushState({},'','/')
+        window.addEventListener('popstate', function (e) {
+        // let goHref = window.location.href;
+        console.log('即将跳转目标路径为：');
+        // // 走到这一步，页面还没有跳转
+   });
+      }
+      function b(){
+        history.pushState({},'','/vue2')
+      }
+  </script>
   <script>
-    System.import('//localhost:9001/sigrid-root-config.js');
+    System.import('@sigrid/root-config');
 
     // const aa = System.import("http://localhost:8080/js/app.js")
     // aa.then(res=>{
     //   console.log(res)
     // })
+
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
