@@ -50,11 +50,13 @@
    }
 
    async function toUnmountPromise(app) {
+       console.log('toUnmountPromise app', app);
        // 当前应用没有被挂载直接什么都不做了
        if (app.status != MOUNTED) {
            return app;
        }
        app.status = UNMOUNTING;
+       console.log('[customProps]', app.customProps);
        await app.unmount(app.customProps);
        app.status = NOT_MOUNTED;
        return app;
@@ -87,6 +89,7 @@
    function urlReroute() {
        reroute(); // 会根据路径重新加载不同的应用
    }
+
    const capturedEventListeners = { // 后续挂载的事件先暂存起来
        hashchange: [],
        popstate: [] // 当应用切换完成后可以调用
@@ -134,7 +137,6 @@
 
    // 用户可能还会绑定自己的路由事件 vue
 
-
    // 当我们应用切换后，还需要处理原来的方法，需要在应用切换后在执行
 
    // 核心应用处理方法
@@ -143,6 +145,9 @@
        //  需要获取要被挂载的应用
        //  哪些应用需要被卸载
        const { appsToLoad, appsToMount, appsToUnmount } = getAppChanges();
+       console.log('appsToLoad', appsToLoad);
+       console.log('appsToMount', appsToMount);
+       console.log('appsToUnmount', appsToUnmount);
        // start方法调用时是同步的，但是加载流程是异步饿
        if (started) {
            // app装载

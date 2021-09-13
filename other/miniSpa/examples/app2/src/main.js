@@ -1,9 +1,9 @@
 import Vue from "vue";
-import singleSpaVue from "single-spa-vue";
+// import singleSpaVue from "single-spa-vue";
+import singleSpaVue from "../../../single-spa-vue/dist/esm/single-spa-vue";
 
 import App from "./App.vue";
 import "@babel/polyfill";
-
 
 Vue.config.productionTip = false;
 
@@ -27,6 +27,3 @@ const vueLifecycles = singleSpaVue({
 export const bootstrap = vueLifecycles.bootstrap;
 export const mount = vueLifecycles.mount;
 export const unmount = vueLifecycles.unmount;
-
-
-

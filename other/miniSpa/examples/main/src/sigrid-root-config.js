@@ -1,4 +1,5 @@
 import { registerApplication, start } from "../../../src/index";
+// import { registerApplication, start } from "../packages/single-spa.dev";
 
 registerApplication({
   name: "@sigrid/app1",
@@ -15,8 +16,3 @@ registerApplication({
 start({
   urlRerouteOnly: true,
 });
-
-export const go = (pathname) => {
-  history.pushState({}, null, pathname);
-  reroute();
-};

@@ -7,6 +7,7 @@ export const routingEventsListeningTo = ['hashchange', 'popstate'];
 function urlReroute() {
     reroute([], arguments); // 会根据路径重新加载不同的应用
 }
+
 const capturedEventListeners = { // 后续挂载的事件先暂存起来
     hashchange: [],
     popstate: [] // 当应用切换完成后可以调用
@@ -53,6 +54,5 @@ window.history.pushState = patchedUpdateState(window.history.pushState,'pushStat
 window.history.replaceState = patchedUpdateState(window.history.replaceState,'replaceState');
 
 // 用户可能还会绑定自己的路由事件 vue
-
 
 // 当我们应用切换后，还需要处理原来的方法，需要在应用切换后在执行

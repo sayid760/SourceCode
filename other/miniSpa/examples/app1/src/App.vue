@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: center; margin-top: 100px; background: #fb4fd6; padding:40px; ">app1</div>
+  <div style="text-align: center; margin-top: 50px; background: #fb4fd6; padding:40px; ">app1</div>
 </template>
 
 <script>
